@@ -2,8 +2,8 @@ function getInputElement(inputId) {
     const InputFieldId = document.getElementById(inputId);
     const InputFieldString = InputFieldId.value;
     const InputField = parseFloat(InputFieldString);
-    if (isNaN(InputField) || typeof (InputField) !== 'number') {
-        return alert('Invalid Value')
+    if (isNaN(InputField) || typeof (InputField) !== 'number' || InputField < 0) {
+        return alert('Invalid Value! Here accepted just Valid Number')
     }
     return InputField;
 }
@@ -31,6 +31,9 @@ function balance() {
     const income = getInputElement('income');
     const totalExpense = getInnerField('total-expense')
     const totalBalance = income - totalExpense;
+    if (isNaN(totalBalance)) {
+        return
+    }
     setAmountById('balance', totalBalance)
 
 }
@@ -51,6 +54,5 @@ document.getElementById('calculate-btn').addEventListener('click', function () {
 
 })
 document.getElementById('save-btn').addEventListener('click', function () {
-    console.log('CLICKED')
     savingBalane();
 })
